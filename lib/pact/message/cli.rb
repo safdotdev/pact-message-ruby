@@ -7,7 +7,7 @@ module Pact
       method_option :consumer, required: true, desc: "The Consumer name"
       method_option :provider, required: true, desc: "The Provider name"
       method_option :pact_dir, required: true, desc: "The Pact directory"
-      method_option :pact_specification_version, required: false, default: "2.0.0", desc: "The Pact Specification version"
+      method_option :pact_specification_version, required: false, default: "3.0.0", desc: "The Pact Specification version"
 
       # Update a pact with the given message, or create the pact if it does not exist
       desc 'update MESSAGE_JSON', "Update/create a pact. If MESSAGE_JSON is omitted or '-', it is read from stdin"
@@ -23,6 +23,9 @@ module Pact
 
         message_object = JSON.load(maybe_json == '-' ? $stdin.read : maybe_json)
 
+        if options.pact_specification_version[0].to_i <= 2
+          raise "message pact is only supported in pact_specification_version 3.0.0 or greater"
+        end
         pact_specification_version = Pact::SpecificationVersion.new(options.pact_specification_version)
         message_hash = Pact::Message.from_hash(message_object, { pact_specification_version: pact_specification_version })
         Pact::Message::Consumer::WritePact.call(message_hash, options.pact_dir, options.consumer, options.provider, options.pact_specification_version, :update)

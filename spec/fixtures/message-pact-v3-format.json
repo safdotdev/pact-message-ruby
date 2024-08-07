@@ -31,5 +31,10 @@
   ],
   "provider": {
     "name": "Mary"
+  },
+  "metadata":{
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
   }
 }

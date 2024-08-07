@@ -13,13 +13,11 @@ RSpec.describe "creating a message pact" do
     Pact.message_consumer "Zoo Consumer" do
       has_pact_with "Zoo Provider" do
         mock_provider :alice_producer do
-          pact_specification_version '2'
         end
       end
 
       has_pact_with "Wiffle Provider" do
         mock_provider :wiffle_producer do
-          pact_specification_version '2'
         end
       end
     end
@@ -143,6 +141,7 @@ RSpec.describe "creating a message pact" do
       end
 
       expect(message_handler.output_stream.string).to eq ("Hello John, Mary")
+      message_handler
     end
   end
 end

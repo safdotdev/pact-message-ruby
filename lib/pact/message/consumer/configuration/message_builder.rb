@@ -16,11 +16,12 @@ module Pact
             @name = name
             @consumer_name = consumer_name
             @provider_name = provider_name
-            @pact_specification_version = nil
+            @pact_specification_version = "3.0.0"
           end
 
           dsl do
             def pact_specification_version pact_specification_version
+              raise "message pact is only supported in pact_specification_version 3.0.0 or greater" if pact_specification_version[0].to_i <= 2
               self.pact_specification_version = pact_specification_version
             end
           end

@@ -27,8 +27,9 @@ module Pact
 
         def self.from_hash hash, options = {}
           opts = options.dup
+          raise "message pact is only supported in pact_specification_version 3.0.0 or greater" if opts[:pact_specification_version].major <= 2
           unless opts[:pact_specification_version]
-            opts[:pact_specification_version] = Pact::SpecificationVersion::NIL_VERSION
+            opts[:pact_specification_version] = Pact::SpecificationVersion.new('3')
           end
           contents_matching_rules = hash['matchingRules'] && hash['matchingRules']['body']
           contents_hash = Pact::MatchingRules.merge(hash['contents'], contents_matching_rules, opts)

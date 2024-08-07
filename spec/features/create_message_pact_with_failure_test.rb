@@ -10,7 +10,6 @@ RSpec.describe "creating a message pact with a failure" do
     Pact.message_consumer "Foo Consumer" do
       has_pact_with "Bar Producer" do
         mock_provider :bar_producer do
-          pact_specification_version '2'
         end
       end
     end

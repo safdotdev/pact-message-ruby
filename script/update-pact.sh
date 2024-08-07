@@ -6,9 +6,17 @@ bundle exec bin/pact-message update '{
     }
   ],
   "contents": {
-    "name": {
-      "contents": "Mary",
-      "json_class": "Pact::SomethingLike"
+    "name": "Mary"
+  },
+  "matchingRules": {
+    "body": {
+      "$.name": {
+        "matchers": [
+          {
+            "match": "type"
+          }
+        ]
+      }
     }
   }
 }
