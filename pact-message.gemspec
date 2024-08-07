@@ -30,10 +30,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "pact-support", "~> 1.8"
-  # pact-mock_service dependencies are Pact::ConsumerContractDecorator
-  # and Pact::ConsumerContractWriter. Potentially we should extract
-  # or duplicate these classes to remove the pact-mock_service dependency.
-  spec.add_runtime_dependency "pact-mock_service", "~> 3.1"
   spec.add_runtime_dependency "thor", '>= 0.20', '< 2.0'
 
   spec.add_development_dependency "rake", "~> 12.3", ">= 12.3.3"
